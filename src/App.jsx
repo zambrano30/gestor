@@ -17,6 +17,12 @@ function App() {
   useEffect(() => {
     const checkDatabase = async () => {
       try {
+        if (!supabase) {
+          setDbError('Configuración de Supabase incompleta. Verifica las variables de entorno.')
+          setLoading(false)
+          return
+        }
+
         console.log('🔍 Verificando base de datos...')
         
         // Try to fetch from customers table to verify it exists
